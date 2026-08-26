@@ -1,0 +1,51 @@
+﻿@{
+    ViewData["Title"] = "Panel Principal";
+}
+
+<div class="container py-4">
+    <!-- Título con el color corporativo de tu logo -->
+    <h1 style="color: #880e4f; font-family: Georgia, serif; font-weight: bold;">
+        Panel de Control - Sigila
+    </h1>
+    
+    <p class="fs-5 mt-3">
+        Bienvenida, <strong>@User.Identity?.Name</strong>.
+    </p>
+    <p>
+        Nivel de autorización activo:
+        <!-- Etiqueta que muestra el rol extraído directamente de la base de datos -->
+        <span class="badge px-3 py-2 text-uppercase" style="background-color: #d81b60;">
+            @User.FindFirst(System.Security.Claims.ClaimTypes.Role)?.Value
+        </span>
+    </p>
+
+    <div class="row g-4 mt-3">
+        @if (User.IsInRole("administradora"))
+        {
+            <div class="col-md-4">
+                <a class="btn btn-dark w-100 py-3 shadow-sm rounded-3" asp-action="Administracion">
+                    ⚙️ Gestión de Administración
+                </a>
+            </div>
+        }
+
+        @if (User.IsInRole("administradora") || User.IsInRole("usuaria_final"))
+        {
+            <div class="col-md-4">
+                <!-- Botón destacado para el módulo principal de tesis -->
+                <a class="btn w-100 py-3 text-white shadow-sm rounded-3" style="background-color: #d81b60;" asp-action="Alertas">
+                    🚨 Alertas y Monitoreo
+                </a>
+            </div>
+        }
+
+        @if (User.IsInRole("administradora") || User.IsInRole("contacto_emergencia"))
+        {
+            <div class="col-md-4">
+                <a class="btn btn-primary w-100 py-3 shadow-sm rounded-3" asp-action="RedApoyo">
+                    🤝 Red de Apoyo
+                </a>
+            </div>
+        }
+    </div>
+</div>

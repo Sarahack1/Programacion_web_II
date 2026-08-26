@@ -1,0 +1,97 @@
+@model Practica02FincaMVC.Models.ViewModels.LoginViewModel
+@{
+    ViewData["Title"] = "Ingresar";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ingresar - Sigila</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/login.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="login-page">
+        <section class="login-hero">
+            <div class="hero-overlay">
+                <div>
+                    <h2>SIGILA</h2>
+                    <p>Hardware y software de alerta temprana. Tu seguridad, nuestro protocolo.</p>
+                </div>
+            </div>
+        </section>
+        <section class="login-panel">
+            <div class="login-box text-center">
+                <!-- Aquí inyectamos tu logo rosa -->
+                <img src="~/img/logo-sigila.jpg" alt="Logo Sigila" class="img-fluid mb-4 rounded-circle" style="max-width: 150px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" />
+                
+                <h1>Bienvenida</h1>
+                <p class="subtitle">Ingresa con tu cuenta universitaria.</p>
+                
+                <form asp-action="Login" method="post" class="text-start">
+                    @Html.AntiForgeryToken()
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3 fw-bold"></div>
+                    
+                    <div class="mb-3">
+                        <label asp-for="Email" class="form-label fw-semibold"></label>
+                        <input asp-for="Email" class="form-control form-control-lg" autocomplete="username" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label asp-for="Password" class="form-label fw-semibold"></label>
+                        <div class="input-group">
+                            <!-- Le agregamos el ID 'inputPassword' para controlarlo con JS -->
+                            <input asp-for="Password" class="form-control form-control-lg" autocomplete="current-password" id="inputPassword" />
+                            <!-- Botón del ojito para ver contraseña -->
+                            <button class="btn btn-outline-secondary" type="button" id="btnTogglePassword" style="border-color: #ced4da;">
+                                👁️
+                            </button>
+                        </div>
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                    
+                    <div class="form-check mb-4">
+                        <input asp-for="RememberMe" class="form-check-input" />
+                        <label asp-for="RememberMe" class="form-check-label"></label>
+                    </div>
+                    
+                    <button class="btn btn-sigila w-100 btn-lg mb-3" type="submit">
+                        Ingresar al sistema
+                    </button>
+
+                    <!-- Opciones adicionales sugeridas para tu UX -->
+                    <div class="text-center mt-2">
+                        <a href="#" class="text-decoration-none small" style="color: #880e4f;">¿Olvidaste tu contraseña?</a>
+                        <br />
+                        <a href="#" class="text-decoration-none fw-bold mt-2 d-inline-block" style="color: #d81b60;">Crear una cuenta nueva</a>
+                    </div>
+                </form>
+
+                <!-- Script para darle vida al botón de "Ver contraseña" -->
+                <script>
+                    document.addEventListener("DOMContentLoaded", function() {
+                        const btnToggle = document.getElementById('btnTogglePassword');
+                        const inputPassword = document.getElementById('inputPassword');
+
+                        btnToggle.addEventListener('click', function() {
+                            if (inputPassword.type === 'password') {
+                                inputPassword.type = 'text';
+                                btnToggle.textContent = '🙈'; // Cambia el icono cuando se ve
+                            } else {
+                                inputPassword.type = 'password';
+                                btnToggle.textContent = '👁️'; // Cambia el icono cuando se oculta
+                            }
+                        });
+                    });
+                </script>
+            </div>
+        </section>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+</body>
+</html>
