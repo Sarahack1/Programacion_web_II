@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Practica02FincaMVC.Data;
+using Practica02MVC.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +8,8 @@ builder.Services.AddControllersWithViews();
 
 // 1. Inyectamos nuestro repositorio para que el sistema pueda consultar tu base de datos
 builder.Services.AddScoped<UserRepository>();
+
+builder.Services.AddScoped<ContactoEmergenciaRepository>();
 
 // 2. Configuramos el núcleo de seguridad y la Cookie de sesión
 builder.Services

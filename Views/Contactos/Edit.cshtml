@@ -1,0 +1,49 @@
+@model Practica02MVC.Models.ContactoEmergencia
+@{
+    ViewData["Title"] = "Editar Contacto";
+}
+
+<h1 style="color: #880e4f; font-weight: bold;">Editar Contacto de la Red</h1>
+<hr />
+
+<!-- Nota cómo el formulario ahora apunta a Edit y le pasa el ID del contacto en la ruta -->
+<form asp-action="Edit" asp-route-id="@Model.IdContacto" method="post" class="row g-3 shadow-sm p-4 rounded bg-white">
+    
+    <!-- ¡SÚPER IMPORTANTE! El ID oculto para que el controlador sepa a quién actualizar -->
+    <input type="hidden" asp-for="IdContacto" />
+    
+    <div asp-validation-summary="ModelOnly" class="text-danger fw-bold"></div>
+
+    <div class="col-md-6">
+        <label asp-for="IdUsuarioPropietario" class="form-label fw-bold"></label>
+        <select asp-for="IdUsuarioPropietario" asp-items="ViewBag.Usuarias" class="form-select border-danger"></select>
+        <span asp-validation-for="IdUsuarioPropietario" class="text-danger"></span>
+    </div>
+
+    <div class="col-md-6">
+        <label asp-for="NombreContacto" class="form-label fw-bold"></label>
+        <input asp-for="NombreContacto" class="form-control border-danger" />
+        <span asp-validation-for="NombreContacto" class="text-danger"></span>
+    </div>
+
+    <div class="col-md-6">
+        <label asp-for="Telefono" class="form-label fw-bold"></label>
+        <input asp-for="Telefono" class="form-control border-danger" />
+        <span asp-validation-for="Telefono" class="text-danger"></span>
+    </div>
+
+    <div class="col-md-6">
+        <label asp-for="Parentesco" class="form-label fw-bold"></label>
+        <input asp-for="Parentesco" class="form-control border-danger" />
+        <span asp-validation-for="Parentesco" class="text-danger"></span>
+    </div>
+
+    <div class="col-12 mt-4">
+        <button type="submit" class="btn text-white fw-bold" style="background-color: #d81b60;">Guardar Cambios</button>
+        <a asp-action="Index" class="btn btn-secondary fw-bold">Cancelar</a>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

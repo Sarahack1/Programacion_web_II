@@ -1,0 +1,27 @@
+@model Practica02MVC.Models.ContactoEmergencia
+@{
+    ViewData["Title"] = "Eliminar Contacto";
+}
+
+<h1 class="text-danger" style="font-weight: bold;">Eliminar Contacto</h1>
+<hr />
+
+<!-- Advertencia de seguridad que pide el manual -->
+<div class="alert alert-warning fw-bold border-warning shadow-sm">
+    <i class="bi bi-exclamation-triangle-fill"></i> Esta acción eliminará permanentemente a este contacto de tu red de apoyo. ¿Estás segura de que deseas continuar?
+</div>
+
+<div class="card shadow-sm border-danger mb-4">
+    <div class="card-body">
+        <p><strong>Usuaria a la que pertenece:</strong> @Model.NombrePropietario</p>
+        <p><strong>Nombre del contacto:</strong> @Model.NombreContacto</p>
+        <p><strong>Teléfono:</strong> @Model.Telefono</p>
+        <p><strong>Parentesco:</strong> <span class="badge bg-secondary">@Model.Parentesco</span></p>
+    </div>
+</div>
+
+<!-- Formulario POST para ejecutar la eliminación real -->
+<form asp-action="Delete" asp-route-id="@Model.IdContacto" method="post">
+    <button type="submit" class="btn btn-danger fw-bold">Sí, eliminar definitivamente</button>
+    <a asp-action="Index" class="btn btn-secondary fw-bold">Cancelar</a>
+</form>

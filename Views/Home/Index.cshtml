@@ -42,7 +42,7 @@
         @if (User.IsInRole("administradora") || User.IsInRole("contacto_emergencia"))
         {
             <div class="col-md-4">
-                <a class="btn btn-primary w-100 py-3 shadow-sm rounded-3" asp-action="RedApoyo">
+                <a class="btn btn-primary w-100 py-3 shadow-sm rounded-3" asp-action="Index" asp-controller="Contactos">
                     🤝 Red de Apoyo
                 </a>
             </div>

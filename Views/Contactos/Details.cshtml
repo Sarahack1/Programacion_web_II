@@ -1,0 +1,44 @@
+@model Practica02MVC.Models.ContactoEmergencia
+@{
+    ViewData["Title"] = "Detalles del Contacto";
+}
+
+<h1 style="color: #880e4f; font-weight: bold;">Ficha del Contacto</h1>
+<hr />
+
+<div class="card shadow-sm border-0 mt-4">
+    <div class="card-header text-white fw-bold" style="background-color: #d81b60;">
+        Información de la Red de Apoyo
+    </div>
+    <div class="card-body">
+        <dl class="row mb-0">
+            <dt class="col-sm-4 text-muted">Usuaria a la que pertenece</dt>
+            <dd class="col-sm-8 fw-bold">@Model.NombrePropietario</dd>
+
+            <dt class="col-sm-4 text-muted">Nombre del contacto</dt>
+            <dd class="col-sm-8">@Model.NombreContacto</dd>
+
+            <dt class="col-sm-4 text-muted">Teléfono</dt>
+            <dd class="col-sm-8">
+                <a href="tel:@Model.Telefono" class="text-decoration-none" style="color: #880e4f;">
+                    @Model.Telefono
+                </a>
+            </dd>
+
+            <dt class="col-sm-4 text-muted">Parentesco</dt>
+            <dd class="col-sm-8">
+                <span class="badge bg-secondary">@Model.Parentesco</span>
+            </dd>
+        </dl>
+    </div>
+</div>
+
+<div class="mt-4">
+    <a asp-action="Index" class="btn btn-secondary fw-bold">Regresar a la lista</a>
+    
+    <!-- El botón de editar solo lo ven quienes tienen permiso en el controlador -->
+    @if (User.IsInRole("administradora") || User.IsInRole("usuaria_final"))
+    {
+        <a asp-action="Edit" asp-route-id="@Model.IdContacto" class="btn text-white fw-bold" style="background-color: #880e4f;">Editar este contacto</a>
+    }
+</div>

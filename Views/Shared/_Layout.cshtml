@@ -19,7 +19,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+                   <ul class="navbar-nav flex-grow-1">
                         @if (User.Identity?.IsAuthenticated == true)
                         {
                             <li class="nav-item">
@@ -40,12 +40,12 @@
                                 </li>
                             }
 
-                            @if (User.IsInRole("administradora") || User.IsInRole("contacto_emergencia"))
-                            {
-                                <li class="nav-item">
-                                    <a class="nav-link" asp-controller="Home" asp-action="RedApoyo">Red de Apoyo</a>
-                                </li>
-                            }
+                            <!-- NUESTRO NUEVO CRUD DE SIGILA -->
+                            <li class="nav-item">
+                                <a class="nav-link text-dark " asp-area="" asp-controller="Contactos" asp-action="Index">
+                                    <i class="bi bi-shield-heart text-danger"></i> Red de Apoyo
+                                </a>
+                            </li>
                         }
                     </ul>
                 </div>
