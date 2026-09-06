@@ -4,16 +4,13 @@
     
     let idleTimer;
     let lastPing = 0;
-    const logoutForm = document.getElementById('logoutForm');
 
     function scheduleLogout() {
         clearTimeout(idleTimer);
         idleTimer = setTimeout(() => {
-            if (logoutForm) {
-                logoutForm.submit();
-            } else {
-                window.location.href = '/Cuenta/Login';
-            }
+            // 🚨 AQUÍ ESTÁ LA MAGIA IMPOSTORA 🚨
+            // Redirigimos directo a nuestra ruta especial en el controlador
+            window.location.href = '/Cuenta/LogoutInactividad';
         }, IDLE_LIMIT_MS);
     }
 

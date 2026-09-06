@@ -50,7 +50,7 @@
                         <a asp-action="Details" asp-route-id="@item.IdContacto" class="btn btn-sm btn-outline-dark">Ver</a>
                         
                         <!-- EDITAR: visible para administradora y usuaria_final -->
-                        @if (User.IsInRole("administradora") || User.IsInRole("usuaria_final"))
+                        @if (User.IsInRole("administradora") )
                         {
                             <a asp-action="Edit" asp-route-id="@item.IdContacto" class="btn btn-sm btn-outline-primary">Editar</a>
                         }

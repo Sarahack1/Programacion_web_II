@@ -41,7 +41,7 @@ public async Task<IActionResult> Index()
         return View(contacto);
     }
 
-    // CREATE: administradora y contacto_emergencia.
+    // CREATE: administradora.
     [Authorize(Roles = "administradora, usuaria_final")]
     [HttpGet]
     public async Task<IActionResult> Create()
@@ -76,7 +76,7 @@ public async Task<IActionResult> Index()
     }
 
     // UPDATE: administradora y usuaria_final.
-    [Authorize(Roles = "administradora, usuaria_final")]
+    [Authorize(Roles = "administradora")]
     [HttpGet]
     public async Task<IActionResult> Edit(long id)
     {
@@ -86,7 +86,7 @@ public async Task<IActionResult> Index()
         return View(contacto);
     }
 
-    [Authorize(Roles = "administradora, usuaria_final")]
+    [Authorize(Roles = "administradora")]
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Edit(long id, ContactoEmergencia contacto)

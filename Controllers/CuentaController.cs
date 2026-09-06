@@ -111,4 +111,16 @@ public class CuentaController : Controller
     {
         return View();
     }
+    [HttpGet]
+    public async Task<IActionResult> LogoutInactividad()
+    {
+        // Destruimos la cookie de sesión de forma segura
+        await HttpContext.SignOutAsync(
+            Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme);
+        
+        // Preparamos el mensaje del servidor
+        TempData["AmongUs"] = "El servidor cerró la sala por inactividad";
+        
+        return RedirectToAction("Login");
+    }
 }

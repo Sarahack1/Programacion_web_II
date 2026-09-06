@@ -29,7 +29,15 @@
                 
                 <h1>Bienvenida</h1>
                 <p class="subtitle">Ingresa con tu cuenta universitaria.</p>
-                
+                @if (TempData["AmongUs"] != null)
+                {
+                    <div class="text-center p-4 mb-4 rounded shadow-lg mx-auto" style="background-color: #e9b4f0bd; border: 3px solid #7c1717e1; max-width: 400px; font-family: Arial, sans-serif;">
+                        <p class="fs-5 mb-4 text-white">@TempData["AmongUs"]</p>
+                        <button type="button" class="btn fw-bold text-white rounded-pill" style="background-color: #c584ba; padding: 6px 35px; border: 2px solid #7e4e85d6;" onclick="this.parentElement.style.display='none';">
+                            ACEPTAR
+                        </button>
+                    </div>
+                }
                 <form asp-action="Login" method="post" class="text-start">
                     @Html.AntiForgeryToken()
                     <div asp-validation-summary="ModelOnly" class="text-danger mb-3 fw-bold"></div>
